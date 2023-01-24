@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 class SurveysController < ApplicationController
-  before_action :set_survey, only: [:destroy, :update, :edit, :show]
+  before_action :set_survey, only: %i[destroy update edit show]
 
   def index
     @surveys = Survey.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @survey = Survey.new
@@ -15,18 +16,17 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
     if @survey.save
-      redirect_to @survey, notice: "Successfully created survey."
+      redirect_to @survey, notice: 'Successfully created survey.'
     else
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-    if @survey.update_attributes(survey_params)
-      redirect_to @survey, notice: "Successfully updated survey."
+    if @survey.update(survey_params)
+      redirect_to @survey, notice: 'Successfully updated survey.'
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class SurveysController < ApplicationController
 
   def destroy
     @survey.destroy
-    redirect_to surveys_url, notice: "Successfully destroyed survey."
+    redirect_to surveys_url, notice: 'Successfully destroyed survey.'
   end
 
   private
@@ -44,6 +44,8 @@ class SurveysController < ApplicationController
   end
 
   def survey_params
-    params.require(:survey).permit(:name, questions_attributes: [:id, :content, :survey_id, :_destroy, answers_attributes: [:id, :content, :question_id, :_destroy]])
+    params.require(:survey).permit(:name,
+                                   questions_attributes: [:id, :content, :survey_id, :_destroy,
+                                                          { answers_attributes: %i[id content question_id _destroy] }])
   end
 end
