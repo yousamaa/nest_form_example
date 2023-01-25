@@ -1,7 +1,6 @@
 $(document).on("turbolinks:load", function () {
   $("form").on("click", ".remove_fields", function (event) {
-    $(this).prev("input[type=hidden]").val("1");
-    $(this).closest("fieldset").hide();
+    $(this).closest("fieldset").remove();
     return event.preventDefault();
   });
 
@@ -12,18 +11,18 @@ $(document).on("turbolinks:load", function () {
     return event.preventDefault();
   });
 
-  $("form").on("click", ".remove_fields", function (event) {
-    var objectId = $(this).data("object-id");
-    if (objectId) {
-      $.ajax({
-        url: "/answers/" + objectId,
-        type: "DELETE",
-        success: function (response) {
-          if (response.success) {
-            return event.preventDefault();
-          }
-        },
-      });
-    }
-  });
+  // $("form").on("click", ".remove_fields", function (event) {
+  //   var objectId = $(this).data("object-id");
+  //   if (objectId) {
+  //     $.ajax({
+  //       url: "/answers/" + objectId,
+  //       type: "DELETE",
+  //       success: function (response) {
+  //         if (response.success) {
+  //           return event.preventDefault();
+  //         }
+  //       },
+  //     });
+  //   }
+  // });
 });
