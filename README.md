@@ -1,24 +1,13 @@
-# README
+# NESTED FORM EXAMPLE USING JQUERY
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Ruby version: 2.7.2
 
-Things you may want to cover:
+- Gem Used: jquery-rails
 
-* Ruby version
+- Configuration
 
-* System dependencies
+- Database: Survey has_many Questions and Question has_many Answers
 
-* Configuration
+- Database initialization: rails db:migrate, rails db:seed
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- How to run: rails s
